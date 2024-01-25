@@ -1,13 +1,21 @@
-import Form from "./components/Form";
+import Form from './components/Form';
+import useDarkMode from 'use-dark-mode';
+import { ThemeSwitcher } from './components/ThemeSwitcher';
 
 function App() {
-
+  const darkMode = useDarkMode(false);
   return (
-		<>
-			<h1 className="text-3xl font-bold underline">Hello world!</h1>
-      <Form />
-		</>
+    <>
+      <main
+        className={`w-screen h-screen flex justify-center items-center ${
+          darkMode.value ? 'dark' : ''
+        } text-foreground bg-secondary`}
+      >
+        {/* <ThemeSwitcher /> */}
+        <Form />
+      </main>
+    </>
   );
 }
 
-export default App
+export default App;
