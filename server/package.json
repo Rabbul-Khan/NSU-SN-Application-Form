@@ -1,7 +1,7 @@
 {
    "scripts": {
-    "start": "NODE_ENV=production node index.js",
-    "dev": "NODE_ENV=development nodemon index.js",
+    "start": "NODE_ENV=production node app.js",
+    "dev": "NODE_ENV=development nodemon app.js",
     "lint": "eslint",
     "test": "NODE_ENV=test jest --verbose --runInBand",
     "build:ui": "rm -rf dist && cd ../client && npm run build && cp -r dist ../server",
