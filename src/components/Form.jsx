@@ -95,7 +95,7 @@ const Form = () => {
   // };
 
   return (
-    <Card className="flex h-max max-w-[1000px]  bg-primary text-white md:grid md:h-[80%] md:w-[80%] md:grid-cols-[1fr_2fr] md:p-5">
+    <Card className="flex h-max max-w-[1000px]  rounded-none bg-primary text-white sm:rounded-xl md:grid md:h-[80%] md:w-[80%] md:grid-cols-[1fr_2fr] md:p-5">
       <h1 className="mx-auto p-5 pb-0 text-2xl font-bold md:hidden">
         Start, <span className="text-[#f06ac6]">Grow</span>, Succeed - Join Us!
       </h1>
@@ -135,12 +135,12 @@ const Form = () => {
           <FaXTwitter className="min-h-8 min-w-8 cursor-pointer rounded-[50%] p-2 hover:bg-secondary" />
         </CardFooter>
       </div>
-      <Card className="m-5 h-max bg-slate-100 p-5 md:h-auto md:max-w-[650px]">
-        <CardBody>
+      <Card className="m-5 h-max  bg-slate-100 px-5  md:h-auto md:max-w-[650px]">
+        <CardBody className="h-max overflow-hidden p-0 pb-3">
           <form
             ref={form}
             onSubmit={sendEmail}
-            className="flex h-full flex-col gap-2.5"
+            className="flex min-h-fit flex-col gap-2.5"
           >
             <Input
               type="text"
@@ -258,7 +258,7 @@ const Form = () => {
           </form>
         </CardBody>
       </Card>
-      <CardBody className="text-sm md:hidden">
+      <CardBody className="overflow-hidden text-sm md:hidden ">
         <div className="flex flex-col items-center justify-center gap-1 ">
           <div className="flex cursor-pointer items-center gap-2 rounded-lg p-3 hover:bg-secondary/10 hover:ring hover:ring-secondary">
             <IconContext.Provider value={{ color: "#f06ac6" }}>
