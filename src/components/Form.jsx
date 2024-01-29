@@ -136,7 +136,7 @@ const Form = () => {
         </CardFooter>
       </div>
       <Card className="m-5 h-max  bg-slate-100 px-5  md:h-auto md:max-w-[650px]">
-        <CardBody className="h-max overflow-hidden p-0 pb-3">
+        <CardBody className="h-max overflow-hidden p-0 pb-3 md:p-5">
           <form
             ref={form}
             onSubmit={sendEmail}
@@ -251,7 +251,7 @@ const Form = () => {
             <Button
               type="submit"
               color="secondary"
-              className="mt-auto text-white"
+              className="text-white md:mt-10"
             >
               Submit
             </Button>
