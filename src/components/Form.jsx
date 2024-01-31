@@ -76,7 +76,7 @@ const Form = () => {
   };
 
   return (
-    <Card className="flex h-full w-full max-w-[1000px] items-center rounded-none bg-primary text-white  md:grid md:h-[80%] md:w-[80%] md:grid-cols-[1fr_2fr] md:rounded-xl md:p-5 ">
+    <Card className="flex h-full w-full max-w-[1000px] animate-slideInLeft items-center rounded-none bg-primary  text-white md:grid md:h-[80%] md:w-[80%] md:grid-cols-[1fr_2fr] md:rounded-xl md:p-5 ">
       <h1 className="mx-auto pt-5 text-2xl font-bold md:hidden ">
         Start, <span className="text-[#f06ac6]">Grow</span>, Succeed - Join Us!
       </h1>
