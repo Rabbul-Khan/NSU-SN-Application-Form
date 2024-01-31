@@ -1,17 +1,22 @@
 import { useState, useRef } from "react";
-//import axios from "axios";
-import { Card, CardBody, CardHeader, CardFooter } from "@nextui-org/react";
-import { Input } from "@nextui-org/react";
-import { RadioGroup, Radio } from "@nextui-org/react";
-import { Button } from "@nextui-org/react";
-import { Autocomplete, AutocompleteItem } from "@nextui-org/react";
-import { FaPhone } from "react-icons/fa6";
+import {
+  Card,
+  CardFooter,
+  Input,
+  Button,
+  Autocomplete,
+  AutocompleteItem,
+} from "@nextui-org/react";
+
+import {
+  FaPhone,
+  FaEnvelope,
+  FaLocationDot,
+  FaInstagram,
+  FaXTwitter,
+} from "react-icons/fa6";
+import { SlSocialFacebook } from "react-icons/sl";
 import { IconContext } from "react-icons";
-import { FaEnvelope } from "react-icons/fa6";
-import { FaLocationDot } from "react-icons/fa6";
-import { FaFacebookF } from "react-icons/fa6";
-import { FaInstagram } from "react-icons/fa6";
-import { FaXTwitter } from "react-icons/fa6";
 import emailjs from "@emailjs/browser";
 
 const startupTypes = [
@@ -55,6 +60,14 @@ const Form = () => {
         (result) => {
           console.log(result.text);
           form.current.reset();
+          setFormData({
+            name: "",
+            email: "",
+            contact: "",
+            startupName: "",
+            domain: "",
+          });
+          alert("Application submitted successfully");
         },
         (error) => {
           console.log(error.text);
@@ -62,53 +75,21 @@ const Form = () => {
       );
   };
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-
-  //   const { name, email, contact, startupName, domain } = formData;
-  //   //console.log(e);
-  //   try {
-  //     console.log(formData);
-
-  //     const response = await axios.post(
-  //       "http://localhost:3001/api/submit",
-  //       formData,
-  //     );
-
-  //     if (response.status === 201) {
-  //       console.log("Application Successful");
-  //       console.log("Form Data:", name, email, contact, startupName, domain);
-  //       setFormData({
-  //         name: "",
-  //         email: "",
-  //         contact: "",
-  //         startupName: "",
-  //         domain: "",
-  //       });
-  //       // console.log('API Response:', response.data);
-  //     } else {
-  //       console.error("Application failed");
-  //     }
-  //   } catch (error) {
-  //     console.error("Error:", error);
-  //   }
-  // };
-
   return (
-    <Card className="flex h-max max-w-[1000px]  rounded-none bg-primary text-white sm:rounded-xl md:grid md:h-[80%] md:w-[80%] md:grid-cols-[1fr_2fr] md:p-5">
-      <h1 className="mx-auto p-5 pb-0 text-2xl font-bold md:hidden">
+    <Card className="flex h-full w-full max-w-[1000px] items-center rounded-none bg-primary text-white  md:grid md:h-[80%] md:w-[80%] md:grid-cols-[1fr_2fr] md:rounded-xl md:p-5 ">
+      <h1 className="mx-auto pt-5 text-2xl font-bold md:hidden ">
         Start, <span className="text-[#f06ac6]">Grow</span>, Succeed - Join Us!
       </h1>
 
-      <div className="hidden flex-col p-5 md:flex ">
-        <CardHeader>
-          <h1 className="text-3xl font-bold ">
+      <div className="hidden h-full flex-col justify-between p-10 pl-2 md:flex">
+        <div>
+          <h1 className="text-4xl font-extrabold ">
             Start, <span className="text-[#f06ac6]">Grow</span>, Succeed - Join
             Us!
           </h1>
-        </CardHeader>
-        <CardBody>
-          <div className="flex h-[80%] flex-col justify-center gap-5 ">
+        </div>
+        <div>
+          <div className="gap- flex flex-col text-sm">
             <div className="flex cursor-pointer items-center gap-2 rounded-lg p-3 hover:bg-secondary/10 hover:ring hover:ring-secondary">
               <IconContext.Provider value={{ color: "#f06ac6" }}>
                 <FaPhone />
@@ -125,73 +106,77 @@ const Form = () => {
               <IconContext.Provider value={{ color: "#f06ac6" }}>
                 <FaLocationDot />
               </IconContext.Provider>
-              499 Corliss , Yokofurt, ND
+              499 Corliss, Yokofurt, ND
             </div>
           </div>
-        </CardBody>
-        <CardFooter className="flex gap-16 self-end">
-          <FaFacebookF className="min-h-8 min-w-8 cursor-pointer  rounded-[50%] p-2 hover:bg-secondary" />
-          <FaInstagram className="min-h-8 min-w-8 cursor-pointer rounded-[50%] p-2 hover:bg-secondary" />
-          <FaXTwitter className="min-h-8 min-w-8 cursor-pointer rounded-[50%] p-2 hover:bg-secondary" />
-        </CardFooter>
+        </div>
+        <div className="flex justify-center gap-14">
+          <SlSocialFacebook className="min-h-9 min-w-9 cursor-pointer  rounded-[50%] p-2 hover:bg-secondary" />
+          <FaInstagram className="min-h-9 min-w-9 cursor-pointer rounded-[50%] p-2 hover:bg-secondary" />
+          <FaXTwitter className="min-h-9 min-w-9 cursor-pointer rounded-[50%] p-2 hover:bg-secondary" />
+        </div>
       </div>
-      <Card className="m-5 h-max  bg-slate-100 px-5  md:h-auto md:max-w-[650px]">
-        <CardBody className="h-max overflow-hidden p-0 pb-3 md:p-5">
-          <form
-            ref={form}
-            onSubmit={sendEmail}
-            className="flex min-h-fit flex-col gap-2.5"
-          >
+      <div className="m-2 mt-5 w-full bg-[#E5E9FF] p-5 sm:rounded-lg md:m-0 md:h-auto md:max-w-[650px]">
+        <form
+          ref={form}
+          onSubmit={sendEmail}
+          className=" flex flex-col gap-2.5  "
+        >
+          <div className="text-primary">
             <Input
               type="text"
               label="Name"
-              id="name"
+              name="name"
+              isRequired
               value={formData.name}
-              //placeholder="John Doe"
-              color="primary"
-              variant="underlined"
-              //classNames={{ label: 'text-black dark:text-white/90' }}
-
+              color="danger"
+              variant="faded"
+              className=""
               onChange={(e) =>
                 setFormData({ ...formData, name: e.target.value })
               }
             />
+          </div>
 
+          <div className="text-primary">
             <Input
               type="email"
               label="Email"
-              id="email"
+              name="mail"
               value={formData.email}
-              color="primary"
-              variant="underlined"
-              //classNames={{ label: 'text-black dark:text-white/90' }}
-              //placeholder="johnDoe@email.com"
+              color="danger"
+              isRequired
+              variant="faded"
               onChange={(e) =>
                 setFormData({ ...formData, email: e.target.value })
               }
             />
+          </div>
 
+          <div className="text-primary">
             <Input
               type="string"
-              label="Contact"
+              label="Phone"
               value={formData.contact}
-              color="primary"
-              variant="underlined"
+              color="danger"
+              variant="faded"
               //classNames={{ label: 'text-black dark:text-white/90' }}
               //placeholder="John Doe"
-              id="contact"
+              name="contact"
               onChange={(e) =>
                 setFormData({ ...formData, contact: e.target.value })
               }
             />
-
+          </div>
+          <div className="text-primary">
             <Input
               type="startupName"
               label="Startup Name"
-              id="startupName"
+              name="startupName"
               value={formData.startupName}
-              color="primary"
-              variant="underlined"
+              color="danger"
+              variant="faded"
+              isRequired
               //classNames={{ label: 'text-black dark:text-white/90' }}
               //placeholder="John Doe"
 
@@ -199,8 +184,8 @@ const Form = () => {
                 setFormData({ ...formData, startupName: e.target.value })
               }
             />
-
-            {/* <div>
+          </div>
+          {/* <div>
             <p>Choose the Domain for your Startup:</p>
             <input type="radio" id="agri" name="domain" value="agri" />
             <label htmlFor="agri">Agriculture</label>
@@ -212,7 +197,7 @@ const Form = () => {
             <br />
           </div> */}
 
-            {/* <RadioGroup
+          {/* <RadioGroup
             label="Choose the Domain for your Startup"
             onChange={(e) => {
               setFormData({
@@ -226,13 +211,14 @@ const Form = () => {
             <Radio value="ecom">E-commerce</Radio>
           </RadioGroup> */}
 
+          <div className="text-primary">
             <Autocomplete
               clearButtonProps={false}
               label="Select your Startup Type"
-              id="domain"
+              name="domain"
               className=""
-              variant="underlined"
-              color="primary"
+              variant="faded"
+              color="danger"
               onSelectionChange={(e) => {
                 console.log(e);
                 setFormData({
@@ -247,41 +233,39 @@ const Form = () => {
                 </AutocompleteItem>
               ))}
             </Autocomplete>
+          </div>
 
-            <Button
-              type="submit"
-              color="secondary"
-              className="text-white md:mt-10"
-            >
-              Submit
-            </Button>
-          </form>
-        </CardBody>
-      </Card>
-      <CardBody className="overflow-hidden text-sm md:hidden ">
-        <div className="flex flex-col items-center justify-center gap-1 ">
-          <div className="flex cursor-pointer items-center gap-2 rounded-lg p-3 hover:bg-secondary/10 hover:ring hover:ring-secondary">
-            <IconContext.Provider value={{ color: "#f06ac6" }}>
-              <FaPhone />
-            </IconContext.Provider>
-            +1 234 567 890
-          </div>
-          <div className="flex cursor-pointer items-center gap-2 rounded-lg p-3 hover:bg-secondary/10 hover:ring hover:ring-secondary">
-            <IconContext.Provider value={{ color: "#f06ac6" }}>
-              <FaEnvelope />
-            </IconContext.Provider>
-            company@mail.com
-          </div>
-          <div className="flex cursor-pointer items-center gap-2 rounded-lg p-3 hover:bg-secondary/10 hover:ring hover:ring-secondary">
-            <IconContext.Provider value={{ color: "#f06ac6" }}>
-              <FaLocationDot />
-            </IconContext.Provider>
-            499 Corliss , Yokofurt, ND
-          </div>
+          <Button
+            type="submit"
+            color="secondary"
+            className="py-7 font-semibold text-white sm:ml-auto sm:mt-5 sm:min-w-60 md:w-full lg:max-w-60"
+          >
+            Submit
+          </Button>
+        </form>
+      </div>
+      <div className="flex flex-col items-center justify-center gap-1 text-sm md:hidden">
+        <div className="flex cursor-pointer items-center gap-2 rounded-lg p-3 hover:bg-secondary/10 hover:ring hover:ring-secondary">
+          <IconContext.Provider value={{ color: "#f06ac6" }}>
+            <FaPhone />
+          </IconContext.Provider>
+          +1 234 567 890
         </div>
-      </CardBody>
+        <div className="flex cursor-pointer items-center gap-2 rounded-lg p-3 hover:bg-secondary/10 hover:ring hover:ring-secondary">
+          <IconContext.Provider value={{ color: "#f06ac6" }}>
+            <FaEnvelope />
+          </IconContext.Provider>
+          company@mail.com
+        </div>
+        <div className="flex cursor-pointer items-center gap-2 rounded-lg p-3 hover:bg-secondary/10 hover:ring hover:ring-secondary">
+          <IconContext.Provider value={{ color: "#f06ac6" }}>
+            <FaLocationDot />
+          </IconContext.Provider>
+          499 Corliss , Yokofurt, ND
+        </div>
+      </div>
       <CardFooter className="flex justify-center gap-16 md:hidden">
-        <FaFacebookF className="min-h-8 min-w-8 cursor-pointer rounded-[50%] p-2 hover:bg-secondary" />
+        <SlSocialFacebook className="min-h-8 min-w-8 cursor-pointer rounded-[50%] p-2 hover:bg-secondary" />
         <FaInstagram className="min-h-8 min-w-8 cursor-pointer rounded-[50%] p-2 hover:bg-secondary" />
         <FaXTwitter className="min-h-8 min-w-8 cursor-pointer rounded-[50%] p-2 hover:bg-secondary" />
       </CardFooter>
